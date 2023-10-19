@@ -2,7 +2,7 @@
 <#macro page_title>Вход</#macro>
 <#macro page_body>
     <div class="container p-50 w-50" style="height: 100vh; padding-top:20%">
-        <form action="./login" method="GET" >
+        <form action="./login" method="POST" >
             <div class="mb-3 row">
                 <label for="inputLogin" class="col-sm-2 col-form-label">Логин</label>
                 <div class="col-sm-10">

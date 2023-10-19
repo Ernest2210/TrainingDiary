@@ -29,4 +29,14 @@
         <servlet-name>registration</servlet-name>
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
+
+    <filter>
+        <filter-name>nonauthfilter</filter-name>
+        <filter-class>com.example.trainingdiary.filters.NonAuthFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>nonauthfilter</filter-name>
+        <url-pattern>/login</url-pattern>
+        <url-pattern>/registration</url-pattern>
+    </filter-mapping>
 </web-app>

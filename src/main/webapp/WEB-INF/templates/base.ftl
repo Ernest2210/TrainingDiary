@@ -54,8 +54,8 @@
                         </li>
                     </ul>
 
-                    <#if user_authecated == true>
-                        <a href="./profile" class="btn btn-outline-success">${user_name}</a>
+                    <#if user??>
+                        <a href="./profile" class="btn btn-outline-success">${user.getName()}</a>
                     <#else>
                         <a href="./login" class="btn btn-outline-succes">Вход</a>
                     </#if>
