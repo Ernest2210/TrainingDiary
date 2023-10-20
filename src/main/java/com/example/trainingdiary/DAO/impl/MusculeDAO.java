@@ -8,6 +8,7 @@ import com.example.trainingdiary.models.Muscule;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -50,5 +51,26 @@ public class MusculeDAO implements DAO<Muscule> {
             throw new RuntimeException();
         }
         return muscules;
+    }
+
+    public List<Muscule> getByExerciseId(int id){
+        try {
+            List<Muscule> muscules = new LinkedList<>();
+            PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
+                    "SELECT id, title FROM \"Muscule\"\n" +
+                            "JOIN \"ExerciseMuscule\" ON id = muscule_id\n" +
+                            "WHERE exercise_id=?;"
+            );
+            statement.setInt(1, id);
+
+            ResultSet rs = statement.executeQuery();
+            MusculeMapper musculeMapper = new MusculeMapper();
+            while (rs.next()){
+                muscules.add(musculeMapper.getEntity(rs));
+            }
+            return muscules;
+        }catch (SQLException e){
+            return new ArrayList<>();
+        }
     }
 }

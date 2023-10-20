@@ -4,6 +4,8 @@ import com.example.trainingdiary.DAO.impl.MusculeDAO;
 import com.example.trainingdiary.models.Muscule;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -20,5 +22,13 @@ public class Helper {
         root.put("musculeTypes", musculeDAO.getAll());
         root.put("servletContext", request.getContextPath());
         return root;
+    }
+
+    public static void sendRedirect(HttpServletRequest request, HttpServletResponse response, String location){
+        try {
+            response.sendRedirect(request.getContextPath() + location);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
     }
 }

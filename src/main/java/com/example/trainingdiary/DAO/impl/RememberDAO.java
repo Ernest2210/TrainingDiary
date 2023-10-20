@@ -10,6 +10,7 @@ import com.example.trainingdiary.models.User;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
 public class RememberDAO implements DAO<Remember> {
     @Override
@@ -38,6 +39,11 @@ public class RememberDAO implements DAO<Remember> {
     @Override
     public void delete(long id) {
 
+    }
+
+    @Override
+    public List<Remember> getAll() {
+        return null;
     }
 
     public Remember getByUser(User user){

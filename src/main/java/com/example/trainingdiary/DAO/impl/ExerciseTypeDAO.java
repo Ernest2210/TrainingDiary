@@ -21,7 +21,26 @@ public class ExerciseTypeDAO implements DAO<ExerciseType> {
 
     @Override
     public ExerciseType get(int id) {
-        return null;
+        try {
+            PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
+                    "SELECT \"ExerciseType\".id, \"ExerciseType\".title, photo_path, description, technique, " +
+                            "\"ExerciseType\".complexity AS complexity_id, value AS complexity FROM \"ExerciseType\"\n" +
+                            "LEFT JOIN \"ExerciseComplexity\" ON complexity = \"ExerciseComplexity\".id\n" +
+                            "WHERE \"ExerciseType\".id=?;"
+            );
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            ExerciseTypeMapper exerciseTypeMapper = new ExerciseTypeMapper();
+            ExerciseType exerciseType = null;
+            if (rs.next()){
+                exerciseType = exerciseTypeMapper.getEntity(rs);
+            }
+            return exerciseType;
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
+
     }
 
     @Override

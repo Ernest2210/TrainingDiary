@@ -22,7 +22,7 @@ public class MainPageServlet extends HttpServlet {
         try {
             tmpl.process(root, response.getWriter());
         } catch (TemplateException e) {
-            throw new RuntimeException(e);
+            Helper.sendRedirect(request, response, "/error");
         }
     }
 }
