@@ -48,6 +48,32 @@
         <url-pattern>/exercises</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>exercise</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.ExerciseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exercise</servlet-name>
+        <url-pattern>/exercise</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>notFound</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.NotFoundServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>notFound</servlet-name>
+        <url-pattern>/notfound</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>serverError</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.ServerErrorServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>serverError</servlet-name>
+        <url-pattern>/error</url-pattern>
+    </servlet-mapping>
 
     <filter>
         <filter-name>authfilter</filter-name>
@@ -55,10 +81,9 @@
     </filter>
     <filter-mapping>
         <filter-name>authfilter</filter-name>
-        <url-pattern>/login</url-pattern>
-        <url-pattern>/registration</url-pattern>
-        <url-pattern/>
-        <url-pattern>/profile</url-pattern>
-        <url-pattern>/exercises</url-pattern>
+        <servlet-name>login</servlet-name>
+        <servlet-name>registration</servlet-name>
+        <servlet-name>index</servlet-name>
+        <servlet-name>profile</servlet-name>
     </filter-mapping>
 </web-app>
