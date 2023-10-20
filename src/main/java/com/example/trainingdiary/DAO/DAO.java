@@ -6,7 +6,7 @@ import java.util.List;
 public interface DAO<T> {
     void create(T obj) throws SQLException;
     T get(int id);
-    void update(T obj);
+    void update(T obj) throws SQLException;
     void delete(long id);
     List<T> getAll();
 }

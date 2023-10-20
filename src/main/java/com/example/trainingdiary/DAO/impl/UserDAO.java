@@ -73,8 +73,18 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public void update(User obj) {
+    public void update(User obj) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "UPDATE \"User\" " +
+                        "SET name=?, surname=?, birthday=? " +
+                        "WHERE id=?;"
+        );
+        statement.setString(1, obj.getName());
+        statement.setString(2, obj.getSurname());
+        statement.setDate(3, obj.getBirthday());
+        statement.setInt(4, obj.getId());
 
+        statement.executeUpdate();
     }
 
     @Override

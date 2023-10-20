@@ -19,6 +19,7 @@ import java.util.HashMap;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         HashMap<String, Object> root = Helper.getGeneralContext(request);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");

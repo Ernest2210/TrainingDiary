@@ -22,6 +22,7 @@ import java.util.HashMap;
 public class RegistrationServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         HashMap<String, Object> root = Helper.getGeneralContext(request);
         Boolean passwordError = (request.getParameter("passwordsNotMatch") == null) ? Boolean.FALSE : Boolean.TRUE;
         Boolean loginError = (request.getParameter("loginNotUnique") == null) ? Boolean.FALSE : Boolean.TRUE;

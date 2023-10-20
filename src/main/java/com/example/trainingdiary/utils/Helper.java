@@ -2,9 +2,11 @@ package com.example.trainingdiary.utils;
 
 import com.example.trainingdiary.DAO.impl.MusculeDAO;
 import com.example.trainingdiary.models.Muscule;
+import com.example.trainingdiary.models.User;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -30,5 +32,9 @@ public class Helper {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public static User getUser(HttpSession session){
+        return ((User) session.getAttribute("User"));
     }
 }

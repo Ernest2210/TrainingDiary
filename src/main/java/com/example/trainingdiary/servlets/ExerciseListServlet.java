@@ -23,7 +23,6 @@ public class ExerciseListServlet extends HttpServlet {
         response.setContentType("text/html");
         try {
             int musculeId = Integer.parseInt(request.getParameter("muscle"));
-            System.out.println(musculeId);
             ExerciseTypeDAO exerciseTypeDAO = new ExerciseTypeDAO();
             List<ExerciseType> exerciseTypeList = exerciseTypeDAO.getAllBYMuscule(musculeId);
             root.put("exerciseTypeList", exerciseTypeList);

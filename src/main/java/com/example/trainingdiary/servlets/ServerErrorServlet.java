@@ -14,6 +14,7 @@ import java.util.HashMap;
 public class ServerErrorServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         HashMap<String, Object> root = Helper.getGeneralContext(request);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");

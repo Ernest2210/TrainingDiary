@@ -19,6 +19,7 @@ import java.util.List;
 public class ExerciseServlet extends HttpServlet {
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        request.setCharacterEncoding("UTF-8");
         HashMap<String, Object> root = Helper.getGeneralContext(request);
         response.setCharacterEncoding("UTF-8");
         response.setContentType("text/html");
