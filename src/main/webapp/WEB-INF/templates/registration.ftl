@@ -1,4 +1,5 @@
 <#include "base.ftl">
+<#macro page_title>Регистрация</#macro>
 
 <#macro page_body>
     <div class="container p-50 w-50" style="height: 100vh; padding-top:15%">

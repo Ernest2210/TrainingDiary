@@ -22,6 +22,15 @@
     </servlet-mapping>
 
     <servlet>
+        <servlet-name>profile</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.ProfileServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>profile</servlet-name>
+        <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
         <servlet-name>registration</servlet-name>
         <servlet-class>com.example.trainingdiary.servlets.RegistrationServlet</servlet-class>
     </servlet>
@@ -29,14 +38,27 @@
         <servlet-name>registration</servlet-name>
         <url-pattern>/registration</url-pattern>
     </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>exerciseList</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.ExerciseListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exerciseList</servlet-name>
+        <url-pattern>/exercises</url-pattern>
+    </servlet-mapping>
+
 
     <filter>
-        <filter-name>nonauthfilter</filter-name>
-        <filter-class>com.example.trainingdiary.filters.NonAuthFilter</filter-class>
+        <filter-name>authfilter</filter-name>
+        <filter-class>com.example.trainingdiary.filters.AuthFilter</filter-class>
     </filter>
     <filter-mapping>
-        <filter-name>nonauthfilter</filter-name>
+        <filter-name>authfilter</filter-name>
         <url-pattern>/login</url-pattern>
         <url-pattern>/registration</url-pattern>
+        <url-pattern/>
+        <url-pattern>/profile</url-pattern>
+        <url-pattern>/exercises</url-pattern>
     </filter-mapping>
 </web-app>

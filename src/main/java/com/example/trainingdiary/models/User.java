@@ -62,6 +62,10 @@ public class User {
         return birthday;
     }
 
+    public String getBirthdayString(){
+        return birthday.toString();
+    }
+
     public boolean isActive() {
         return isActive;
     }

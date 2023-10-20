@@ -15,6 +15,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.List;
 
 public class UserDAO implements DAO<User> {
     @Override
@@ -79,5 +80,10 @@ public class UserDAO implements DAO<User> {
     @Override
     public void delete(long id) {
 
+    }
+
+    @Override
+    public List<User> getAll() {
+        return null;
     }
 }
