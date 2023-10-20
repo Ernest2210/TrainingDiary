@@ -30,20 +30,9 @@
                                 Упражнения
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="./exercise?muscle=breast">Грудь</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=shoulders">Плечи</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=biceps">Бицепс</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=triceps">Трицепс</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=forearm">Предплечье</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=trapezoid">Трапеция</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=latissimus">Широчайшие</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=back">Поясница</a></li>
-                                <li><a class="dropdown-item" href=./exercise?muscle=press>Пресс</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=buttocks">Ягодицы</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=quadriceps">Квадрицепс</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=biceps_hamstrings">Бицепс бедра</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=hip_adductors">Приводящие бедра</a></li>
-                                <li><a class="dropdown-item" href="./exercise?muscle=shin">Голень</a></li>
+                                <#list musculeTypes as type>
+                                    <li><a class="dropdown-item" href="./exercises?muscle=${type.getId()}">${type.getTitle()}</a></li>
+                                </#list>
                             </ul>
                         </li>
                         <li class="nav-item">
