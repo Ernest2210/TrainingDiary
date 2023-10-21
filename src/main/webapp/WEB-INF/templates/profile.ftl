@@ -54,7 +54,10 @@
                             <div class="col-md-6"><label class="labels">Охват голени</label><input id="profile-shin-input" type="number" name="shin" class="form-control" value="<#if shin??>${shin.getValue()}<#else>0</#if>"></div>
                             <input type="hidden" name="old_shin" value="<#if shin??>${shin.getValue()}<#else>0</#if>">
                         </div>
-                        <div class="mt-5 text-center"><button id="profile-save-button" class="btn btn-primary profile-button" type="submit">Save Profile</button></div>
+                        <div class="mt-5 text-center"><button id="profile-save-button" class="btn btn-primary profile-button" type="submit">Сохранить</button></div>
+                    </form>
+                    <form action="./logout" method="POST">
+                        <div class="mt-5 text-center"><button id="logout-button" class="btn btn-danger" type="submit">Выход</button></div>
                     </form>
                 </div>
             </div>
