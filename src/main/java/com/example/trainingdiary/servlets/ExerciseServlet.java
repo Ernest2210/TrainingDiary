@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 
 public class ExerciseServlet extends HttpServlet {
+    // TODO выводить сложность тут и в ExerciseList
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         request.setCharacterEncoding("UTF-8");

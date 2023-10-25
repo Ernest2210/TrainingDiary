@@ -3,7 +3,8 @@
 
 <#macro page_body>
     <div class="container text-center">
-        <div class="row row-cols-4">
+
+        <div class="row row-cols-4 mt-3">
             <#list exerciseTypeList as exerciseType>
                 <div class="col">
                     <div class="card h-100">

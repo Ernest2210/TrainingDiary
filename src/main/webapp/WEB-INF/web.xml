@@ -84,6 +84,24 @@
         <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>journal</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.JournalServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>journal</servlet-name>
+        <url-pattern>/diary</url-pattern>
+    </servlet-mapping>
+    
+    <servlet>
+        <servlet-name>trainingData</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.TrainingDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trainingData</servlet-name>
+        <url-pattern>/api/training_data</url-pattern>
+    </servlet-mapping>
+    
     <filter>
         <filter-name>authfilter</filter-name>
         <filter-class>com.example.trainingdiary.filters.AuthFilter</filter-class>
@@ -94,5 +112,6 @@
         <servlet-name>registration</servlet-name>
         <servlet-name>profile</servlet-name>
         <servlet-name>logout</servlet-name>
+        <servlet-name>trainingData</servlet-name>
     </filter-mapping>
 </web-app>
