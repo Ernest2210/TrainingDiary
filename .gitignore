@@ -37,4 +37,4 @@ build/
 
 ### Mac OS ###
 .DS_Store
-/src/main/java/com/example/trainingdiary/connectors/Config.java
+/src/main/java/com/example/trainingdiary/Config.java

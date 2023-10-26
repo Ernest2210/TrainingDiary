@@ -18,7 +18,18 @@ import java.util.List;
 public class ExerciseDAO implements DAO<Exercise> {
     @Override
     public void create(Exercise obj) throws SQLException {
+        try (PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "INSERT INTO \"Exercise\" (user_id, exercise_id, date, comment, difficult)" +
+                        "VALUES (?, ?, ?, ?, ?)"
+        )){
+            statement.setInt(1, obj.getUserId());
+            statement.setInt(2, obj.getExerciseType().getId());
+            statement.setDate(3, obj.getDate());
+            statement.setString(4, obj.getComment());
+            statement.setInt(5, obj.getDifficult());
 
+            statement.executeUpdate();
+        }
     }
 
     @Override
@@ -47,7 +58,7 @@ public class ExerciseDAO implements DAO<Exercise> {
                 "SELECT \"Exercise\".id, user_id, date, comment, difficult, exercise_id, \"ExerciseType\".title FROM \"Exercise\" " +
                         "JOIN \"ExerciseType\" ON exercise_id = \"ExerciseType\".id " +
                         "WHERE user_id=? " +
-                        "ORDER BY date DESC " +
+                        "ORDER BY date DESC, \"Exercise\".id DESC " +
                         "LIMIT ? OFFSET ?;"
                 )
         ) {

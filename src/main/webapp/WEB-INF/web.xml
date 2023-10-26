@@ -101,6 +101,20 @@
         <servlet-name>trainingData</servlet-name>
         <url-pattern>/api/training_data</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>exerciseTitle</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.ExerciseTitleServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>exerciseTitle</servlet-name>
+        <url-pattern>/api/exercise-title</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>body</servlet-name>
+        <servlet-class></servlet-class>
+    </servlet>
     
     <filter>
         <filter-name>authfilter</filter-name>

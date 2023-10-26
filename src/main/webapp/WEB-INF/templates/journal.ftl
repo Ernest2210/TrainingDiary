@@ -28,11 +28,16 @@
                             <div class="mb-3">
                                 <label for="exercise-title" class="col-form-label"><h3>Упражнение:</h3></label>
                                 <input class="form-control" id="exercise-title" name="exercise-title"/>
-                                <div id="suggesstion-box"></div>
+                                <ul id="suggestion-box" style="overflow: auto; max-height: 300px;">
+                                </ul>
                             </div>
                             <div class="mb-3">
                                 <label for="comment" class="col-form-label"><h3>Коментарий:</h3></label>
-                                <input class="form-control" id="comment" name="comment"/>
+                                <textarea class="form-control" id="comment" name="comment"></textarea>
+                            </div>
+                            <div class="mb-3">
+                                <label for="difficult" class="col-form-label"><h3>Сложность:</h3></label>
+                                <input class="form-control" type="number" id="difficult" name="difficult"/>
                             </div>
                             <div class="row mb-3">
                                 <h3>Подход:</h3>

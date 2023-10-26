@@ -4,6 +4,15 @@ public class Approach {
     private int id;
     private int count;
     private double weight;
+    private int exerciseId;
+
+    public int getExerciseId() {
+        return exerciseId;
+    }
+
+    public void setExerciseId(int exerciseId) {
+        this.exerciseId = exerciseId;
+    }
 
     public int getId() {
         return id;

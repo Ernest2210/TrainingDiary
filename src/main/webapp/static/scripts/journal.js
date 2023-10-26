@@ -1,5 +1,7 @@
 const listElm = document.querySelector('#calendar-wrapper');
 const addApproachButton = document.querySelector('#add-approach-button');
+const suggestion = document.getElementById("suggestion-box")
+const exerciseTitleInput = document.getElementById("exercise-title")
 const approachHtml = `
                             <div class="row mb-3">
                                 <h3>Подход:</h3>
@@ -81,6 +83,10 @@ function printCard(data){
     });
 }
 
+function printIntoInput(event) {
+    exerciseTitleInput.value = event.target.innerText;
+    suggestion.innerHTML = "";
+}
 
 window.onload = () => {
     window.addEventListener('scroll', checkScroll);
@@ -92,23 +98,19 @@ window.onload = () => {
     $(document).ready(function() {
         $("#exercise-title").keyup(function() {
             $.ajax({
-                type: "POST",
-                url: "./exercise-title",
-                data: 'keyword=' + $(this).val(),
-                beforeSend: function() {
-                    $("#search-box").css("background", "#FFF url(LoaderIcon.gif) no-repeat 165px");
-                },
-                success: function(data) {
-                    $("#suggesstion-box").show();
-                    $("#suggesstion-box").html(data);
-                    $("#search-box").css("background", "#FFF");
+                type: "GET",
+                url: `./api/exercise-title?keyword=${$(this).val()}`,
+                dataType: 'json',
+                success: (response) => {
+                    let data = response.exercises;
+
+                    let html = ""
+                    data.forEach((exercise) => {
+                        html += `<li onclick="printIntoInput(event)">${exercise.title}</li>`
+                    });
+                    suggestion.innerHTML = html;
                 }
             });
         });
     });
-//To select a country name
-    function selectCountry(val) {
-        $("#search-box").val(val);
-        $("#suggesstion-box").hide();
-    }
 }
