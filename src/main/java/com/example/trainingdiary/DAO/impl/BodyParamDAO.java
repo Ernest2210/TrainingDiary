@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.time.LocalDateTime;
 import java.sql.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 public class BodyParamDAO implements DAO<BodyParam> {
@@ -64,6 +65,24 @@ public class BodyParamDAO implements DAO<BodyParam> {
             }else{
                 return null;
             }
+        } catch (SQLException e) {
+            return null;
+        }
+    }
+
+    public List<BodyParam> getAllByUserId(int id){
+        try {
+            LinkedList<BodyParam> bodyParamLinkedList = new LinkedList<>();
+            PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
+                    "SELECT * FROM \"" + this.type + "\" WHERE user_id=? ORDER BY date;"
+            );
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                BodyParamMapper bodyParamMapper = new BodyParamMapper(this.type);
+                bodyParamLinkedList.add(bodyParamMapper.getEntity(rs));
+            }
+            return bodyParamLinkedList;
         } catch (SQLException e) {
             return null;
         }

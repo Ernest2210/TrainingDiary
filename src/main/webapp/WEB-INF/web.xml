@@ -113,8 +113,12 @@
 
     <servlet>
         <servlet-name>body</servlet-name>
-        <servlet-class></servlet-class>
+        <servlet-class>com.example.trainingdiary.servlets.BodyServlet</servlet-class>
     </servlet>
+    <servlet-mapping>
+        <servlet-name>body</servlet-name>
+        <url-pattern>/body</url-pattern>
+    </servlet-mapping>
     
     <filter>
         <filter-name>authfilter</filter-name>

@@ -59,6 +59,10 @@ public class BodyParam  {
         return date;
     }
 
+    public String getStringDate(){
+        return date.toString();
+    }
+
     public void setDate(Date date) {
         this.date = date;
     }
