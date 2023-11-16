@@ -95,7 +95,7 @@
     
     <servlet>
         <servlet-name>trainingData</servlet-name>
-        <servlet-class>com.example.trainingdiary.servlets.TrainingDataServlet</servlet-class>
+        <servlet-class>com.example.trainingdiary.servlets.ExerciseDataServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>trainingData</servlet-name>
@@ -118,6 +118,33 @@
     <servlet-mapping>
         <servlet-name>body</servlet-name>
         <url-pattern>/body</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>trainingTemplates</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.TrainingTemplateListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trainingTemplates</servlet-name>
+        <url-pattern>/programs</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>trainingTemplateData</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.TrainingTemplateDataServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>trainingTemplateData</servlet-name>
+        <url-pattern>/api/training-template-data</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>TrainingRetrive</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.TrainingTemplateRetrieveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>TrainingRetrive</servlet-name>
+        <url-pattern>/program</url-pattern>
     </servlet-mapping>
     
     <filter>

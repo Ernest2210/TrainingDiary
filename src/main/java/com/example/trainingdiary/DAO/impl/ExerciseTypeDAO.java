@@ -7,6 +7,7 @@ import com.example.trainingdiary.mapper.impl.MusculeMapper;
 import com.example.trainingdiary.models.ExerciseComplexity;
 import com.example.trainingdiary.models.ExerciseType;
 import com.example.trainingdiary.models.Muscule;
+import com.example.trainingdiary.models.TrainingTemplate;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -97,7 +98,7 @@ public class ExerciseTypeDAO implements DAO<ExerciseType> {
             return exerciseTypes;
         }catch (SQLException e){
             e.printStackTrace();
-            throw new RuntimeException();
+            return new LinkedList<>();
         }
     }
 
@@ -105,21 +106,43 @@ public class ExerciseTypeDAO implements DAO<ExerciseType> {
         try (PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
                 "SELECT id FROM \"ExerciseType\" WHERE LOWER(title) = ?"
         )){
-            List<ExerciseType> exerciseTypes = new LinkedList<>();
-
             statement.setString(1, title.toLowerCase());
             ResultSet rs = statement.executeQuery();
 
             if (rs.next()){
                 ExerciseType exerciseType = new ExerciseType();
                 exerciseType.setId(rs.getInt(1));
-                exerciseTypes.add(exerciseType);
                 return exerciseType;
             }
             return null;
         }catch (SQLException e){
             e.printStackTrace();
-            throw new RuntimeException();
+            return null;
+        }
+    }
+
+    public List<ExerciseType> getByTrainingTemplate(TrainingTemplate trainingTemplate){
+        try (PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
+                "SELECT id, title FROM \"ExerciseType\", \"TrainingExercise\" " +
+                        "WHERE training_id=? " +
+                        "AND exercise_id=id;"
+        )){
+            List<ExerciseType> exerciseTypes = new LinkedList<>();
+
+            statement.setInt(1, trainingTemplate.getId());
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()){
+                ExerciseType exerciseType = new ExerciseType();
+                exerciseType.setId(rs.getInt(1));
+                exerciseType.setTitle(rs.getString(2));
+                exerciseTypes.add(exerciseType);
+            }
+
+            return exerciseTypes;
+        }catch (SQLException e){
+            e.printStackTrace();
+            return new LinkedList<>();
         }
     }
 }
