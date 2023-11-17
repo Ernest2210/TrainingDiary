@@ -60,6 +60,7 @@ function loadMore() {
 function appendComment(data){
     listElem.insertAdjacentHTML("afterbegin", getCardHtml(data))
     commentArea.value = ""
+    countSymbolsBox.innerHTML = `0/${maxCommentLen}`
 }
 
 function sendComment(){
