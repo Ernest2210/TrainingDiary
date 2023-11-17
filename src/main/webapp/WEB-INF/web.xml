@@ -146,6 +146,15 @@
         <servlet-name>TrainingRetrive</servlet-name>
         <url-pattern>/program</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>commentData</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.CommentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>commentData</servlet-name>
+        <url-pattern>/api/comment</url-pattern>
+    </servlet-mapping>
     
     <filter>
         <filter-name>authfilter</filter-name>
