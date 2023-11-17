@@ -9,7 +9,7 @@
                     <div class="d-flex justify-content-between align-items-center mb-3">
                         <h4 class="text-right">Профиль</h4>
                     </div>
-                    <form action="./profile" method="POST">
+                    <form id="form" action="./profile" method="POST">
                         <div class="row mt-2">
                             <div class="col-md-6"><label class="labels">Имя</label><input id="profile-name-input" type="text" name="name" class="form-control" placeholder="first name" value="${user.getName()}"></div>
                             <input type="hidden" name="old_name" value="${user.getName()}">
@@ -65,6 +65,10 @@
     </div>
     </div>
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./static/scripts/profile.js"/>
 </#macro>
 
 <@display_page/>

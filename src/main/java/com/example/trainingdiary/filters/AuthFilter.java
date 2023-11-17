@@ -52,7 +52,7 @@ public class AuthFilter extends HttpFilter {
             }
         }else{
             if(req.getRequestURI().equals(req.getContextPath()+"/login") ||
-                    req.getRequestURI().equals(req.getContextPath()+"/register")){
+                    req.getRequestURI().equals(req.getContextPath()+"/registration")){
                 chain.doFilter(req, res);
             }else {
                 res.sendRedirect(req.getContextPath() + "/login");

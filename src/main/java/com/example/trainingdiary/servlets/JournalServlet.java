@@ -50,7 +50,7 @@ public class JournalServlet extends HttpServlet {
             int difficult = Integer.parseInt(request.getParameter("difficult"));
             ExerciseType exerciseType = (new ExerciseTypeDAO()).getIdByTitle(exerciseTitle);
             if (exerciseType == null) {
-                // TODO редирект с ошибкой
+                Helper.sendRedirect(request, response, "/diary?exercise_not_found="+exerciseTitle);
             } else {
                 Exercise exercise = new Exercise();
                 exercise.setExerciseType(exerciseType);

@@ -16,6 +16,25 @@
             </div>
         </ul>
 
+        <div id="error-modal" class="modal" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Ошибка</h5>
+                        <button id="close_button" type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p id="modal-error-text"></p>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="close_button" type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <div class="modal fade modal-dialog-scrollable" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content">
@@ -23,7 +42,7 @@
                         <h1 class="modal-title fs-5" id="exampleModalLabel">Добавить упражнение</h1>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
                     </div>
-                    <form action="#" method="post">
+                    <form id="form" action="#" method="post">
                         <div class="modal-body">
                             <div class="mb-3">
                                 <label for="exercise-title" class="col-form-label"><h3>Упражнение:</h3></label>
@@ -57,7 +76,7 @@
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
-                            <button type="submit" class="btn btn-primary">Добавить</button>
+                            <button id="submit-button" class="btn btn-primary">Добавить</button>
                         </div>
                     </form>
                 </div>

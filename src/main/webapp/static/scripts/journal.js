@@ -2,6 +2,9 @@ const listElm = document.querySelector('#calendar-wrapper');
 const addApproachButton = document.querySelector('#add-approach-button');
 const suggestion = document.getElementById("suggestion-box")
 const exerciseTitleInput = document.getElementById("exercise-title")
+let container = document.getElementById('form')
+let input = container.getElementsByTagName('input')
+
 const approachHtml = `
                             <div class="row mb-3">
                                 <h3>Подход:</h3>
@@ -88,11 +91,39 @@ function printIntoInput(event) {
     suggestion.innerHTML = "";
 }
 
+function valid() {
+    container.addEventListener("submit", function (e) {
+
+        let isValid = true
+        for (let i = 0; i < input.length; i++) {
+            if (input[i].value) {
+                input[i].classList.remove('error')
+            } else if (!input[i].value) {
+                input[i].classList.add('error')
+                isValid = false;
+            }
+        }
+        if (!isValid){
+            e.preventDefault()
+        }
+    })
+}
+
 window.onload = () => {
+    const url = new URL(window.location.href)
+    const exerciseNotFound = url.searchParams.get("exercise_not_found")
+    console.log(exerciseNotFound)
+    if(exerciseNotFound !== null){
+        document.getElementById("modal-error-text").innerHTML = `Упражнения ${exerciseNotFound} не существует`
+        $("#error-modal").modal('show');
+    }
     window.addEventListener('scroll', checkScroll);
     addApproachButton.onclick = () => {
         addApproachButton.insertAdjacentHTML("beforebegin", approachHtml)
     }
+
+    valid()
+
     loadMore();
 
     $(document).ready(function() {

@@ -155,6 +155,15 @@
         <servlet-name>commentData</servlet-name>
         <url-pattern>/api/comment</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>UniqueLogin</servlet-name>
+        <servlet-class>com.example.trainingdiary.servlets.UniqueLoginServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UniqueLogin</servlet-name>
+        <url-pattern>/api/unique_login</url-pattern>
+    </servlet-mapping>
     
     <filter>
         <filter-name>authfilter</filter-name>

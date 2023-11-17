@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
         Boolean remember = (request.getParameter("remember") == null) ? Boolean.FALSE : Boolean.TRUE;
         UserDAO dao = new UserDAO();
         User user = dao.getByLogin(login);
-        if(user.getPassword().equals(password)){
+        if(user != null && user.getPassword().equals(password)){
             HttpSession session = request.getSession();
             session.setAttribute("User", user);
             System.out.println(remember);
@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
             String path = request.getContextPath() + "/";
             response.sendRedirect(path);
         }else{
-            // TODO редирект с ошибками
+            Helper.sendRedirect(request, response, "/login?error");
         }
 
     }
