@@ -55,7 +55,7 @@ public class BodyParamDAO implements DAO<BodyParam> {
     public BodyParam getLastByUserId(int id){
         try {
             PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
-                    "SELECT * FROM \"" + this.type + "\" WHERE user_id=? ORDER BY date DESC LIMIT 1;"
+                    "SELECT * FROM \"" + this.type + "\" WHERE user_id=? ORDER BY date DESC, id DESC LIMIT 1;"
             );
             statement.setInt(1, id);
             ResultSet rs = statement.executeQuery();
