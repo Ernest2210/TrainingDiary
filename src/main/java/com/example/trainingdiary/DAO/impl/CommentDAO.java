@@ -34,22 +34,69 @@ public class CommentDAO implements DAO<Comment> {
 
     @Override
     public Comment get(int id) {
-        return null;
+        try (PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
+                "SELECT * FROM \"Comment\" WHERE id=?;"
+        )){
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            if(rs.next()){
+                return (new CommentMapper()).getEntity(rs);
+            }else{
+                return null;
+            }
+        }catch (SQLException e){
+            return null;
+        }
     }
 
     @Override
     public void update(Comment obj) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "UPDATE \"Comment\" " +
+                        "SET training_template_id=?, user_id=?, text=?, " +
+                        "publish_date=?" +
+                        "WHERE id=?;"
+        );
+        statement.setInt(1, obj.getTrainingTemplateId());
+        statement.setInt(2, obj.getUser().getId());
+        statement.setString(3, obj.getText());
+        statement.setTimestamp(4, obj.getDate());
+        statement.setInt(5, obj.getId());
 
+        statement.executeUpdate();
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(int id) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "DELETE FROM\"Comment\" " +
+                        "WHERE id=?;"
+        );
 
+        statement.setInt(1, id);
+
+        statement.executeUpdate();
     }
 
     @Override
     public List<Comment> getAll() {
-        return null;
+        try (PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
+                "SELECT * FROM \"Comment\";"
+        )){
+            List<Comment> commentsList = new LinkedList<>();
+
+            ResultSet rs = statement.executeQuery();
+            while (rs.next()){
+                CommentMapper commentMapper = new CommentMapper();
+                Comment comment = commentMapper.getEntity(rs);
+
+                commentsList.add(comment);
+            }
+            return commentsList;
+        }catch (SQLException e){
+            return null;
+        }
     }
 
     public List<Comment> getByTrainingTemplateId(int id, int page){

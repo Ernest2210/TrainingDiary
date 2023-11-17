@@ -88,8 +88,15 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(int id) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "DELETE FROM\"User\" " +
+                        "WHERE id=?;"
+        );
 
+        statement.setInt(1, id);
+
+        statement.executeUpdate();
     }
 
     @Override

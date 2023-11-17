@@ -18,7 +18,19 @@ import java.util.List;
 public class ExerciseTypeDAO implements DAO<ExerciseType> {
     @Override
     public void create(ExerciseType obj) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "INSERT INTO \"ExerciseType\" (title, photo_path, description, " +
+                        "complexity, texhnique) " +
+                        "VALUES (?, ?, ?, ?, ?);"
+        );
 
+        statement.setString(1, obj.getTitle());
+        statement.setString(2, obj.getPhotoPath());
+        statement.setString(3, obj.getDescription());
+        statement.setInt(4, obj.getComplexity().getId());
+        statement.setString(5, obj.getTechnique());
+
+        statement.executeUpdate();
     }
 
     @Override
@@ -45,18 +57,53 @@ public class ExerciseTypeDAO implements DAO<ExerciseType> {
     }
 
     @Override
-    public void update(ExerciseType obj) {
+    public void update(ExerciseType obj) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "UPDATE \"ExerciseType\" " +
+                        "SET title=?, photo_path=?, description=?, " +
+                        "complexity=?, technique=?" +
+                        "WHERE id=?;"
+        );
+        statement.setString(1, obj.getTitle());
+        statement.setString(2, obj.getPhotoPath());
+        statement.setString(3, obj.getDescription());
+        statement.setInt(4, obj.getComplexity().getId());
+        statement.setString(5, obj.getTechnique());
+        statement.setInt(6, obj.getId());
 
+        statement.executeUpdate();
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(int id) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "DELETE FROM\"ExerciseType\" " +
+                        "WHERE id=?;"
+        );
 
+        statement.setInt(1, id);
+
+        statement.executeUpdate();
     }
 
     @Override
     public List<ExerciseType> getAll() {
-        return null;
+        try (PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
+                "SELECT \"ExerciseType\".id, \"ExerciseType\".title, photo_path, description, technique, " +
+                        "\"ExerciseType\".complexity AS complexity_id, value AS complexity FROM \"ExerciseType\"\n" +
+                        "LEFT JOIN \"ExerciseComplexity\" ON complexity = \"ExerciseComplexity\".id\n;"
+        )) {
+            ResultSet rs = statement.executeQuery();
+            ExerciseTypeMapper exerciseTypeMapper = new ExerciseTypeMapper();
+            List<ExerciseType> typeList = new LinkedList<>();
+            while (rs.next()){
+                typeList.add(exerciseTypeMapper.getEntity(rs));
+            }
+            return typeList;
+        }catch (SQLException e){
+            e.printStackTrace();
+            throw new RuntimeException();
+        }
     }
 
     public List<ExerciseType> getAllBYMuscule(int muscule_id){

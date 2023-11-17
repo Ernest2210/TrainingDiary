@@ -37,8 +37,15 @@ public class RememberDAO implements DAO<Remember> {
     }
 
     @Override
-    public void delete(long id) throws SQLException {
+    public void delete(int id) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "DELETE FROM\"Approach\" " +
+                        "WHERE id=?;"
+        );
 
+        statement.setInt(1, id);
+
+        statement.executeUpdate();
     }
 
     @Override

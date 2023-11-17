@@ -2,6 +2,7 @@ package com.example.trainingdiary.DAO.impl;
 
 import com.example.trainingdiary.DAO.DAO;
 import com.example.trainingdiary.connectors.JDBCConnection;
+import com.example.trainingdiary.mapper.impl.ApproachMapper;
 import com.example.trainingdiary.mapper.impl.MusculeMapper;
 import com.example.trainingdiary.models.Muscule;
 
@@ -16,41 +17,77 @@ public class MusculeDAO implements DAO<Muscule> {
 
     @Override
     public void create(Muscule obj) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "INSERT INTO \"Muscule\" (title) " +
+                        "VALUES (?);"
+        );
 
+        statement.setString(1, obj.getTitle());
+
+        statement.executeUpdate();
     }
 
     @Override
     public Muscule get(int id) {
-        return null;
+        try (PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
+                "SELECT * FROM \"Muscule\" WHERE id=?;"
+        )){
+            statement.setInt(1, id);
+            ResultSet rs = statement.executeQuery();
+
+            if(rs.next()){
+                return (new MusculeMapper()).getEntity(rs);
+            }else{
+                return null;
+            }
+        }catch (SQLException e){
+            return null;
+        }
     }
 
     @Override
-    public void update(Muscule obj) {
+    public void update(Muscule obj) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "UPDATE \"Muscule\" " +
+                        "SET title=? " +
+                        "WHERE id=?;"
+        );
+        statement.setString(1, obj.getTitle());
+        statement.setInt(2, obj.getId());
 
+        statement.executeUpdate();
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(int id) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "DELETE FROM\"Muscule\" " +
+                        "WHERE id=?;"
+        );
 
+        statement.setInt(1, id);
+
+        statement.executeUpdate();
     }
 
     @Override
     public List<Muscule> getAll() {
-        List<Muscule> muscules = new LinkedList<>();
         try {
             PreparedStatement statement = JDBCConnection.getConn().prepareStatement(
                     "SELECT * FROM \"Muscule\""
             );
             ResultSet rs = statement.executeQuery();
             MusculeMapper musculeMapper = new MusculeMapper();
+            List<Muscule> muscules = new LinkedList<>();
+
             while (rs.next()){
                 muscules.add(musculeMapper.getEntity(rs));
             }
+            return muscules;
         }catch (SQLException e){
             e.printStackTrace();
             throw new RuntimeException();
         }
-        return muscules;
     }
 
     public List<Muscule> getByExerciseId(int id){

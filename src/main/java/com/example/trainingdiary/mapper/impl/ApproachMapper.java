@@ -15,6 +15,7 @@ public class ApproachMapper implements Mapper<Approach> {
             approach.setId(rs.getInt(1));
             approach.setCount(rs.getInt(2));
             approach.setWeight(rs.getDouble(3));
+            approach.setExerciseId(rs.getInt(4));
         }catch (SQLException e) {
             throw new RuntimeException(e);
         }
