@@ -52,7 +52,7 @@
         }
     </style>
     <div class="container">
-        <div class="container text-center px-4">
+        <div class="container px-4">
             <h1 class="p-3">${training.getTitle()}</h1>
             <div class="row align-items-center p-3">
                 <div class="col-sm-2">

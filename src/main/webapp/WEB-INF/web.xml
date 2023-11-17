@@ -176,5 +176,7 @@
         <servlet-name>profile</servlet-name>
         <servlet-name>logout</servlet-name>
         <servlet-name>trainingData</servlet-name>
+        <servlet-name>journal</servlet-name>
+        <servlet-name>body</servlet-name>
     </filter-mapping>
 </web-app>
