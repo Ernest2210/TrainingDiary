@@ -37,7 +37,7 @@ public class RememberDAO implements DAO<Remember> {
     }
 
     @Override
-    public void delete(long id) {
+    public void delete(long id) throws SQLException {
 
     }
 
@@ -78,5 +78,16 @@ public class RememberDAO implements DAO<Remember> {
         } catch (SQLException e) {
             return null;
         }
+    }
+
+    public void deleteByUUID(String UUID) throws SQLException {
+        PreparedStatement statement = JDBCConnection.getConn().prepareCall(
+                "DELETE FROM\"Remember\" " +
+                        "WHERE uuid=?;"
+        );
+
+        statement.setString(1, UUID);
+
+        statement.executeUpdate();
     }
 }
